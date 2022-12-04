@@ -1,0 +1,198 @@
+
+body {
+    background: mintcream;
+}
+
+#menuIcon {
+    /*z-index: 100!important;*/
+    display: inline-block;
+    padding-left: 10px;
+    /*left: 0;*/
+    width: 5vw;
+    font-size: 24px;
+    /*border: 1px solid black;*/
+}
+
+#menuDiv {
+    position: absolute;
+    top: 0;
+    /*z-index: 100!important;*/
+    left: 5vw;
+    padding-left: 0px!important;
+    display: inline-block;
+    font-size: 30px;
+    width: 92vw;
+    border: 1px solid black
+}
+
+#menuDiv a {
+    margin-right: 20px;
+}
+
+#newAdminUserDiv {
+    position: relative;
+    width: 20vw;
+    height: 300px;
+    margin: auto;
+    top: 5vh;
+    text-align: center;
+    /*padding-top: 20px;*/
+    border: 1px solid blue;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: white;
+}
+
+#newAdminUserDiv span {
+    display: block;
+    width: 100%;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    border-bottom: 1px solid blue;
+    font-size: 18px;
+    background: powderblue;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.sjrButton {
+    padding: 5px 15px 5px 15px;
+    box-shadow: 2px 2px 4px #000000;
+}
+
+.sjrButton:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.sjrButton:hover {
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
+}
+
+#loginDiv {
+    position: relative;
+    width: 20vw;
+    height: 200px;
+    margin: auto;
+    top: 15vh;
+    text-align: center;
+    /*padding-top: 20px;*/
+    border: 1px solid blue;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: white;
+}
+#loginDiv span {
+    display: block;
+    width: 100%;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    border-bottom: 1px solid blue;
+    font-size: 18px;
+    background: powderblue;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+
+/* Snackbar */
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #555; /* Grey background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Notificationbar */
+/* The notificationbar - position it at the top and in the right of the screen */
+#notificationBar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 350px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #12702b; /* Grey background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    right: 50px; /* Center the snackbar */
+    top: 60px; /* 30px from the bottom */
+}
+
+/* Show the notificationkbar when clicking on a button (class added with JavaScript) */
+#notificationBar.show {
+    visibility: visible; /* Show the notificationkbar */
+
+}
+
+
+/* Snackbar */
+/* The snackbar - position it at the top and in the middle of the screen */
+#errorBar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #d9271a; /* Grey background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    top: 60px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#errorBar.show {
+    visibility: visible; /* Show the errobar */
+}
+
+.errorDiv {
+    margin-top: 10vh;
+    width: 100vw;
+    font-size: 34px;
+    text-align: center;
+    color: red;
+}
+
+.header {
+    color: dodgerblue;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.borderRight {
+    border-right: 2px solid black;
+}
+
+.pageTitle{
+    display: block;
+    height: 3vh;
+    width: 100%;
+    font-size: 32px;
+    color: dodgerblue;
+    margin-top: 2vh;
+    text-align: center;
+}
