@@ -25,12 +25,10 @@ class Occasions
         }
     }
 
-
     static private function addOccasion($requests){
         $variables = Occasion::construct('addOccasion', $requests);
         RenderViews::renderPage(BASE_PAGE_INDEX, $variables);
     }
-
 
     static private function insertOccasion($requests){
         Occasion::insertOccasion($requests);

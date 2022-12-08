@@ -29,13 +29,14 @@ class Setting
         $array = array(
             'requests' => $requests,
             'Settings' => new usersPage($inArray),
-            'component' => SJR_VIEW .'/settings.php',
+            'component' => SJR_VIEW .'/settings/pages/settings.php',
         );
 //        viewArray($array);exit;
         $obj = new pageVariables($array);
 
         return $obj;
     }
+
 
 
 

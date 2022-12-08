@@ -6,6 +6,7 @@ use SJR\Configs\cipher;
 use SJR\Controllers\RenderViews;
 use SJR\Database\databaseObjFunction;
 use SJR\Database\sqlRun;
+use SJR\Entity\_user;
 
 class User
 {
@@ -97,19 +98,47 @@ class User
 
     static public function getUser($id){
         $db = databaseObjFunction::getMYWORLD();
-        $occasions = $db->getUsersFields();
+        $users = $db->getUsersFields();
         $sql = "SELECT * 
                     FROM {$db->getUsers()}
-                    WHERE {$occasions->getUserID()} = :id ";
+                    WHERE {$users->getUserID()} = :id ";
         return sqlRun::sqlRun($sql, '', array(':id' => $id), 'MYWORLD', true)[0];
+    }
+
+    static public function userLevelCombo($inValue){
+        return '<SELECT  name="UserLevel" >
+                    <OPTION ' .($inValue == 0?'SELECTED':'') .' value="0">USER</OPTION>
+                    <OPTION ' .($inValue == 1?'SELECTED':'') .' value="1">ADMINISTRATOR</OPTION>
+                    <OPTION ' .($inValue == 99?'SELECTED':'') .' value="99">GOD</OPTION>
+                </SELECT>';
+    }
+
+    static public function userValidCombo($inValue){
+        return '<SELECT  name="UserValid" >
+                    <OPTION ' .($inValue == 0?'SELECTED':'') .' value="0">NO</OPTION>
+                    <OPTION ' .($inValue == 1?'SELECTED':'') .' value="1">YES</OPTION>
+                </SELECT>';
     }
 
     static public function getUsers(){
         $db = databaseObjFunction::getMYWORLD();
-        $occasions = $db->getUsersFields();
         $sql = "SELECT * 
                     FROM {$db->getUsers()} ";
         return sqlRun::sqlRun($sql, '', array(), 'MYWORLD', true);
+    }
+
+    static public function insertUser($requests){
+        $user = new _user($requests);
+        //  Encrypt the password
+        $user->setPassword(cipher::cipher($requests['Password']));
+        $user->setInsert();
+    }
+
+    static public function updateUser($requests){
+        $user = new _user($requests);
+        //  Encrypt the password
+        $user->setPassword(cipher::cipher($requests['Password']));
+        $user->setUpdate();
     }
 
     /**

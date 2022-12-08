@@ -23,7 +23,16 @@ class Settings
         }
     }
 
+    static public function insertUser($requests){
+        User::insertUser($requests);
+        header('Location: /Settings');
+    }
 
+
+    static public function updateUser($requests){
+        User::updateUser($requests);
+        header('Location: /Settings');
+    }
 
 
 
