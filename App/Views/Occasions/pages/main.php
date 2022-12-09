@@ -3,7 +3,6 @@ if ($obj->getRequests()['error'] != '') { ?>
     <script>
         window.addEventListener("load", function () {
             showSnackBar("<?php echo $obj->getRequests()['error']; ?>");
-            //showNotificationBar("<?php //echo $obj->getRequests()['error']; ?>//");
         })
     </script>
 <?php }

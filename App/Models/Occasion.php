@@ -116,7 +116,29 @@ class Occasion
         return $returns;
     }
 
+    public static function getAnniversaries()
+    {
+        $month = date("m");
+        $day = date("d");
 
+        $db = databaseObjFunction::getMYWORLD();
+        $occasions = $db->getOccasionsFields();
+        $sql = "SELECT *
+                    FROM {$db->getOccasions()}
+                    WHERE
+                            MONTH({$occasions->getOccasionsDate()}) = :mth
+                        AND DAY({$occasions->getOccasionsDate()}) = :dy
+                        AND {$occasions->getOccasionsValid()} = 1
+                    ";
+
+        $results = sqlRun::sqlRun($sql, '', array(':mth' => $month, ':dy' => $day), 'MYWORLD', true);
+        $array = [];
+        foreach ($results as $key => $value) {
+            $array[date("Y", strtotime($value['OccasionsDate']))][] = new _occasions($value);
+        }
+        ksort($array);
+        return $array;
+    }
 
 //    public static function getOccasionTags($TableLinkID, $TableID)
 //    {

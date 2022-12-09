@@ -2,6 +2,8 @@
 
 namespace SJR\Models;
 
+use App\Models\Occasion;
+
 class Home
 {
 
@@ -21,9 +23,10 @@ class Home
 
     static public function main($requests): object
     {
+        $requests['anniversaries'] = Occasion::getAnniversaries();
         $array = array(
             'requests' => $requests,
-            'component' => '',
+            'component' => VIEW_PATH .'/Homes/pages/anniversaies.php',
         );
         $obj = new pageVariables($array);
         return $obj;
