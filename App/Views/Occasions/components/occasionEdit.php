@@ -27,7 +27,6 @@
                       value="<?php echo $occasion->getOccasionsNotes() ?>"><?php echo $occasion->getOccasionsNotes() ?></textarea>
         </div>
     </div>
-
     <div>
         <hr>
         <div class="uk-form-controls">

@@ -13,4 +13,12 @@ window.addEventListener("load", function () {
         window.location.href = '/Occasions?month=' +mth;
     })
 
+    body.on("click", '#uploadFileButton', function(){
+        if($('#uploadFileDiv').hasClass('uk-hidden')){
+            $('#uploadFileDiv').removeClass('uk-hidden');
+        } else {
+            $('#uploadFileDiv').addClass('uk-hidden');
+        }
+    })
+
 })

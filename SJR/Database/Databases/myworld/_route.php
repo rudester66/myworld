@@ -260,34 +260,18 @@ class _route
     /**
      * @param mixed $controllerCheck
      */
-    public function setControllerCheck(): void
+    public function setControllerCheck()
     {
         //  Check if the controller is a real file; exists
         $pageName = ROOT_PATH . "/" . $this->getPageName() . ".php";
         try {
             is_file($pageName);
+            $this->controllerCheck = true;
         } catch (Error $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
-            die();
-        }
-
-//        if (is_file($pageName)) {
-//            //  Check if mode exists
-//            $controller = new $this->pageName();
-//            if (method_exists($controller, $this->mode)) {
-//                //  Do nothing as controller and mode exist
-//                $this->controllerCheck = true;
-//            } else {
-//              //  Send to error page
-//              trigger_error('THE METHOD YOU ARE TRYING TO USE DOES NOT EXIST ON THIS PAGE');
-//              die();
-//            }
-//        } else {
-//
-//            //  Send to error page
-//            trigger_error('Sorry, the page you are looking for could not be found.');
+            $this->controllerCheck = false;
+//            echo 'Caught exception: ',  $e->getMessage(), "\n";
 //            die();
-//        }
+        }
     }
 
     private function setError($error)

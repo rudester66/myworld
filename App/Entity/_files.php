@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\Databases\sjr;
+namespace App\Entity;
 
 use SJR\Database\sqlRun;
 
-class _filesFields
+class _files
 {
     private $FileID;
     private $FileName;
@@ -18,7 +18,7 @@ class _filesFields
     //  Additional Fields
     private $Insert;
     private $Update;
-    
+
     public function __construct(array $inArray)
     {
         if (is_array($inArray)) {
@@ -124,7 +124,6 @@ class _filesFields
         $this->FileWidth = $FileWidth;
     }
 
-
     /**
      * @return mixed
      */
@@ -158,19 +157,65 @@ class _filesFields
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getFileValid()
+    public function getFileValid(): int
     {
         return $this->FileValid;
     }
 
     /**
-     * @param mixed $FileValid
+     * @param int $FileValid
      */
-    public function setFileValid($FileValid): void
+    public function setFileValid(int $FileValid): void
     {
         $this->FileValid = $FileValid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInsert()
+    {
+        return $this->Insert;
+    }
+
+    /**
+     * @param mixed $Insert
+     */
+    public function setInsert(): void
+    {
+        $insert = array();
+        foreach($this->filesArray() AS $key=>$value){
+            $insert[':' .$value] = $this->$value;
+        }
+        $this->Insert  = sqlRun::sqlRun('insert', 'files', $insert, 'MYWORLD', false);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdate()
+    {
+        return $this->Update;
+    }
+
+    /**
+     * @param mixed $Update
+     */
+    public function setUpdate(): void
+    {
+        $set = array();
+        foreach($this->filesArray() AS $key=>$value){
+            $set[':' .$value] = $this->$value;
+        }
+        $update = array(
+            'SET' => $set,
+            'WHERE' => array(
+                ':FileID' => $this->FileID,
+            ),
+        );
+        $this->Update  = sqlRun::sqlRun('update', 'files', $update, 'MYWORLD', false);
     }
 
 

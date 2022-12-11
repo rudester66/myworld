@@ -1,8 +1,9 @@
 <?php
 
-namespace Core\Databases\sjr;
+namespace App\Entity;
 
 use App\Models\Occasion;
+use App\Models\TagLink;
 use SJR\Database\sqlRun;
 
 class _occasions

@@ -2,8 +2,6 @@
 
 namespace SJR\Models;
 
-use App\Entity\occasionsPage;
-use Core\Databases\sjr\_occasions;
 use SJR\Entity\usersPage;
 
 class Setting

@@ -2,11 +2,16 @@
 
 namespace App\Entity;
 
+use App\Models\TagLink;
+
 class occasionsPage
 {
+    private $occasionID;
     private $monthOccasions;
     private $dayOccasions;
     private $occasion;
+    private $AllTags;
+    private $FileTags;
 
     public function __construct(array $inArray)
     {
@@ -16,6 +21,23 @@ class occasionsPage
                 $this->$value = $inArray[$value];
             }
         }
+        self::setAllTags();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOccasionID()
+    {
+        return $this->occasionID;
+    }
+
+    /**
+     * @param mixed $occasionID
+     */
+    public function setOccasionID($occasionID): void
+    {
+        $this->occasionID = $occasionID;
     }
 
     /**
@@ -65,6 +87,44 @@ class occasionsPage
     {
         $this->occasion = $occasion;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAllTags()
+    {
+        return $this->AllTags;
+    }
+
+    /**
+     * @param mixed $AllTags
+     */
+    public function setAllTags(): void
+    {
+        $this->AllTags = TagLink::getAllTags(0, $this->getOccasionID());
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFileTags()
+    {
+        if(array_key_exists(1, $this->AllTags)){
+            return $this->AllTags[1];
+        } else {
+            return $this->FileTags;
+        }
+    }
+
+    /**
+     * @param mixed $FileTags
+     */
+    public function setFileTags($FileTags): void
+    {
+        $this->FileTags = $FileTags;
+    }
+
 
 
 }

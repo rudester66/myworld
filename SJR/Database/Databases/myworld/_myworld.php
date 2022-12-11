@@ -3,19 +3,23 @@
 namespace SJR\Database\Databases\myworld;
 
 
-use Core\Databases\sjr\_occasions;
+use App\Entity\_occasions;
+use Core\Databases\sjr\_occasionsFields;
+use Core\Databases\sjr\_taglinksFields;
 
 class _myworld
 {
     private $users;
     private $sessions;
     private $occasions;
+    private $taglinks;
 
 
     //  Get Fields
     private $usersFields;
     private $sessionsFields;
     private $occasionsFields;
+    private $tagLinksFields;
 
     public function __construct(array $inArray)
     {
@@ -77,6 +81,23 @@ class _myworld
         $this->occasions = $occasions;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTaglinks()
+    {
+        return $this->taglinks;
+    }
+
+    /**
+     * @param mixed $taglinks
+     */
+    public function setTaglinks($taglinks): void
+    {
+        $this->taglinks = $taglinks;
+    }
+
+
 
 
     /**
@@ -116,7 +137,7 @@ class _myworld
      */
     public function getOccasionsFields()
     {
-        return new _occasions(defineMyworld::getFields('occasions'));
+        return new _occasionsFields(defineMyworld::getFields('occasions'));
     }
 
     /**
@@ -125,6 +146,22 @@ class _myworld
     public function setOccasionsFields($occasionsFields): void
     {
         $this->occasionsFields = $occasionsFields;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTagLinksFields()
+    {
+        return new _taglinksFields(defineMyworld::getFields('tagLinks'));
+    }
+
+    /**
+     * @param mixed $tagLinksFields
+     */
+    public function setTagLinksFields($tagLinksFields): void
+    {
+        $this->tagLinksFields = $tagLinksFields;
     }
 
 

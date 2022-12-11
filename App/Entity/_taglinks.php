@@ -1,18 +1,21 @@
 <?php
 
-namespace Core\Databases\sjr;
+namespace App\Entity;
 
 use SJR\Database\sqlRun;
 
-class _taglinksFields
+class _taglinks
 {
     private $TagLinksID;
     private $ItemTypeID;
     private $ItemID;
     private $TagTypeID;
     private $TagID;
-    private $TagLinksValid;
+    private $TagLinksValid = 1;
 
+    //  Additional Fields
+    private $Insert;
+    private $Update;
 
     public function __construct(array $inArray)
     {
@@ -24,6 +27,18 @@ class _taglinksFields
                 }
             }
         }
+    }
+
+    private function tagsLinksArray()
+    {
+        return array(
+            0 => 'TagLinksID',
+            1 => 'ItemTypeID',
+            2 => 'ItemID',
+            3 => 'TagTypeID',
+            4 => 'TagID',
+            5 => 'TagLinksValid',
+        );
     }
 
     /**
@@ -107,20 +122,67 @@ class _taglinksFields
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getTagLinksValid()
+    public function getTagLinksValid(): int
     {
         return $this->TagLinksValid;
     }
 
     /**
-     * @param mixed $TagLinksValid
+     * @param int $TagLinksValid
      */
-    public function setTagLinksValid($TagLinksValid): void
+    public function setTagLinksValid(int $TagLinksValid): void
     {
         $this->TagLinksValid = $TagLinksValid;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getInsert()
+    {
+        return $this->Insert;
+    }
+
+    /**
+     * @param mixed $Insert
+     */
+    public function setInsert(): void
+    {
+        $insert = array();
+        foreach($this->tagsLinksArray() AS $key=>$value){
+            $insert[':' .$value] = $this->$value;
+        }
+        $this->Insert  = sqlRun::sqlRun('insert', 'taglinks', $insert, 'MYWORLD', false);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdate()
+    {
+        return $this->Update;
+    }
+
+    /**
+     * @param mixed $Update
+     */
+    public function setUpdate(): void
+    {
+        $set = array();
+        foreach($this->tagsLinksArray() AS $key=>$value){
+            $set[':' .$value] = $this->$value;
+        }
+        $update = array(
+            'SET' => $set,
+            'WHERE' => array(
+                ':FileID' => $this->FileID,
+            ),
+        );
+        $this->Update  = sqlRun::sqlRun('update', 'taglinks', $update, 'MYWORLD', false);
+    }
+
 
 
 

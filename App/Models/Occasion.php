@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Core\Databases\sjr\_occasions;
+use App\Entity\_occasions;
 use App\Entity\occasionsPage;
 use SJR\Database\databaseObjFunction;
 use SJR\Database\sqlRun;
@@ -34,6 +34,7 @@ class Occasion
             $occasion->setSelectOne($requests['occasionID']);
         }
         $inArray['occasion'] = $occasion;
+        $inArray['occasionID'] = $requests['occasionID'];
         $array = array(
             'requests' => $requests,
             'Occasions' => new occasionsPage($inArray),

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\File;
 use App\Models\Occasion;
 use SJR\Controllers\RenderViews;
 
@@ -42,6 +43,15 @@ class Occasions
         header('Location: /Occasions?month=' .$month ."&error=Occassion Updated");
     }
 
+
+
+    static private function uploadImagesFiles($requests){
+        ob_clean();
+        $requests['ItemType'] = 0;
+        $requests['ItemID'] = $requests['occasionID'];
+        File::uploadFile($requests);
+    }
+
     static private function setDefaults($requests)
     {
         if(!isset($requests['month'])){
@@ -55,6 +65,9 @@ class Occasions
         }
         if(!isset($requests['error'])){
             $requests['error'] = '';
+        }
+        if(!isset($requests['fileNo'])){
+            $requests['fileNo'] = 0;
         }
         $requests['dateFrom'] = $requests['month'] . "-01";
         $requests['dateTo'] = date("Y-m-t", strtotime($requests['month'] . "-01"));
