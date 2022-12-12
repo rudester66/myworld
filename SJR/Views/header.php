@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
     <?php
+    viewArray($obj->getRequests());
     $requests = $obj->getRequests();
-    $title = 'SJR - ';
-    if(array_key_exists('class', $requests)){
-        $title .=$requests['class'];
+    $title = 'MyWorld ';
+    if(array_key_exists('class', $requests) && $requests['class'] != ''){
+        $title .=" - " .$requests['class'];
+    } else if(array_key_exists('pageName', $requests) && $requests['pageName'] != ''){
+        $title .=" - " .$requests['pageName'];
+    } else if(array_key_exists('controller', $requests) && $requests['controller'] != ''){
+        $title .=" - " .$requests['controller'];
     }
+
     if(array_key_exists('mode', $requests)) {
         $title .= " -- " . $requests['mode'];
     }
