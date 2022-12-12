@@ -64,6 +64,7 @@ function viewArray()
 }
 
 
+
 /**
  * Get the Database object
  * @return \Core\databases\sjr\_myworld|mixed

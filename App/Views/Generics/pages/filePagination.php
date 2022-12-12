@@ -46,13 +46,19 @@ $paginationArray = [];
         <br>
         <span class="paginationCounter">
             <form action="" style="display: inline-block">
-                <?php foreach($paginationArray AS $mode=>$value){  ?>
+                <?php
+                $paginationArray = [
+                    'occasionID' => $obj->getRequests()['occasionID'],
+                ];
+//                viewArray($paginationArray);
+                foreach($paginationArray AS $mode=>$value){  ?>
                     <input type="hidden" name="<?php echo $mode; ?>" value="<?php echo $value; ?>">
                 <?php } ?>
+
             Goto File No: &nbsp; &nbsp; <input type="number" name="fileNo" min="1" max="<?php echo($count - 1); ?>"
                                                value="<?php echo $fileNo; ?>" class="uk-text-right"
                                                style="width: 100px"/>  &nbsp; &nbsp;
-            <input type="submit" value="Goto File No" class="uk-button uk-button-primary uk-button-small">
+                <?php echo sjrButton('button', 'primary', '', 'image', 'Goto File No', '', '')  ?>
             </form>
             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             Count: &nbsp; &nbsp; <?php echo $count; ?></span>

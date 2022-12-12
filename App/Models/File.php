@@ -27,11 +27,11 @@ class File
         $file->setInsert();
 
         $fileID = $file->getInsert();
-viewArray($fileID);
+        viewArray($fileID);
         //  If a number number (ID) is returned, move file and add tags
-        if(is_numeric($fileID)){
+        if (is_numeric($fileID)) {
             //  Copy files into the uploads directory
-            move_uploaded_file($file_tmpname, UPLOADS_PATH . '/' . $fileID .$FileFormat);
+            move_uploaded_file($file_tmpname, UPLOADS_PATH . '/' . $fileID . $FileFormat);
 
             //  Insert TagLink and ReverseTagLink into table
             $ItemTypeID = $requests['ItemType'];
@@ -54,6 +54,50 @@ viewArray($fileID);
 
     }
 
+
+    static public function sortEXIF($exif)
+    {
+//        viewArray($exif);exit;
+        $str = '';
+        $exifArray = [
+            0 => 'FILE',
+            1 => 'COMPUTED',
+            2 => 'IFD0',
+            3 => 'THUMBNAIL',
+            4 => 'EXIF',
+            5 => 'GPS',
+            6 => 'AN_TAGS',
+            7 => 'INTEROP',
+            8 => 'MAKERNOTE',
+        ];
+        $str .= '<ul uk-switcher class="uk-tab ">';
+        foreach ($exifArray as $array => $exifVal) {
+            if (array_key_exists($exifVal, $exif)) {
+//                This is the nav containing the toggling elements
+                $str .= '<li><a href="#">' . $exifVal. '</a></li>';
+            }
+        }
+        $str .= '</ul>';
+//        viewArray($str, $exif); exit;
+
+//      This is the container of the content items
+        $str .= '<ul class="uk-switcher" >';
+        foreach ($exifArray as $array => $exifVal) {
+            if (array_key_exists($exifVal, $exif)) {
+                $str .= '<li><table class="exifTable">';
+                foreach ($exif[$exifVal] as $key => $value) {
+                    $str .= '<tr>
+                        <th>' . $key . '</th>
+                        <td>' . (is_array($value)? json_encode($value): $value ). '</td>
+                    </tr>';
+                }
+                $str .= '</table></li>';
+            }
+        }
+        $str .= '</ul>';
+
+        return $str;
+    }
 
 
 }

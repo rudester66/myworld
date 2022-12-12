@@ -203,7 +203,7 @@ body {
     /*top: 76vh;*/
     /*left: 2vw;*/
     margin: auto;
-    width: 50%;
+    width: 90%;
     border: 2px solid darkblue;
     border-radius: 20px;
     padding: 15px;
@@ -240,4 +240,12 @@ body {
     background: darkblue; !important;
     color: white; !important;
     text-decoration: none;!important;
+}
+
+.exifTable {
+    font-size: 13px;
+}
+
+.exifTable th {
+    text-align: left;
 }

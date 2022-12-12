@@ -37,19 +37,19 @@
 
 
 #occasionsEdit {
-    width: 21vw;
+    width: 20%;
     border-right: 1px solid black ;
-    padding-right: 1vw;
+    padding-right: 1%;
 }
 
 #occasionsImage {
-    width: 50vw;
+    width: 50%;
     border-right: 1px solid black ;
 
 }
 
 #occasionsImageEdit {
-    width: 22vw;
+    width: 20%;
 }
 
 
