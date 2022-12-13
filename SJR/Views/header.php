@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <?php
-    viewArray($obj->getRequests());
     $requests = $obj->getRequests();
     $title = 'MyWorld ';
     if(array_key_exists('class', $requests) && $requests['class'] != ''){
