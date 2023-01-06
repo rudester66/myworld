@@ -3,6 +3,7 @@
 namespace SJR\Controllers;
 
 
+use App\Models\Tag;
 use SJR\Controllers\RenderViews;
 use SJR\Configs\cipher;
 use SJR\Database\sqlRun;
@@ -54,11 +55,17 @@ class Homes
         \SJR\Controllers\RenderViews::renderPage(BASE_PAGE_INDEX, $variables);
     }
 
+    static public function searchTable($requests){
+       ob_clean();
+        return Tag::searchTable($requests['table'], $requests['txt']);
+    }
+
 
     static public function setDefaults(array $requests): array
     {
         return $requests;
     }
+
 
 
 }

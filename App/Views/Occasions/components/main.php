@@ -6,7 +6,7 @@
         ?>
     </div>
 
-    <div id="occasionsImage">
+    <div id="occasionsImage" >
         <?php
 
         //  Swows the current image of the occasion

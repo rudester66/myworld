@@ -1,9 +1,12 @@
 <?php
 
-namespace Core\Databases\sjr;
+namespace App\Entity;
 
-class _membersFields
+use SJR\Database\sqlRun;
+
+class _members
 {
+
     private $MemberID;
     private $Forename;
     private $Middlename;
@@ -18,8 +21,8 @@ class _membersFields
     private $LifeStory;
     private $MemberValid;
 
-    //  Additional Fields
-    private $concat;
+    private $Insert;
+    private $Update;
 
     public function __construct(array $inArray)
     {
@@ -31,6 +34,25 @@ class _membersFields
                 }
             }
         }
+    }
+
+
+    private function privateArray(){
+        return [
+            0 => 'MemberID',
+            1 => 'Forename',
+            2 => 'Middlename',
+            3 => 'Surname',
+            4 => 'DOB',
+            5 => 'DOD',
+            6 => 'Sex',
+            7 => 'Relationship',
+            8 => 'ProfileImage',
+            9 => 'DefinitelyRelated',
+            10 => 'MemberNotes',
+            11 => 'LifeStory',
+            12 => 'MemberValid',
+        ];
     }
 
     /**
@@ -128,7 +150,6 @@ class _membersFields
     {
         $this->DOD = $DOD;
     }
-
 
     /**
      * @return mixed
@@ -245,24 +266,48 @@ class _membersFields
     /**
      * @return mixed
      */
-    public function getConcat()
+    public function getInsert()
     {
-        $concat = $this->getForename() .", ";
-        $concat .= $this->getMiddlename() .", ";
-        $concat .= $this->getSurname() .", ";
-        $concat .= $this->getDOB() .", ";
-        $concat .= $this->getDOD() .", ";
-        $concat .= $this->getRelationship() ." ";
-
-        return $concat;
+        return $this->Insert;
     }
 
     /**
-     * @param mixed $concat
+     * @param mixed $Insert
      */
-    public function setConcat($concat): void
+    public function setInsert(): void
     {
-        $this->concat = $concat;
+        $insert = array();
+        foreach($this->privateArray() AS $key=>$value){
+            $insert[':' .$value] = $this->$value;
+        }
+        $this->Insert  = sqlRun::sqlRun('insert', 'members', $insert, 'MYWORLD', false);
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdate()
+    {
+        return $this->Update;
+    }
+
+    /**
+     * @param mixed $Update
+     */
+    public function setUpdate($Update): void
+    {
+        $set = array();
+        foreach($this->privateArray() AS $key=>$value){
+            $set[':' .$value] = $this->$value;
+        }
+        $update = array(
+            'SET' => $set,
+            'WHERE' => array(
+                ':MemberID' => $this->MemberID,
+            ),
+        );
+        $this->Update  = sqlRun::sqlRun('update', 'members', $update, 'MYWORLD', false);
     }
 
 

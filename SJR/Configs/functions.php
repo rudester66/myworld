@@ -98,7 +98,22 @@ function menuButton($href, $icon, $title){
     return "<a href='{$href}' uk-icon='icon: {$icon}; ratio:2' data-uk-tooltip='title:{$title}; pos: bottom-right; animation: uk-animation-slide-left'></a>";
 }
 
+function MF(string $inValue)
+{
+    return "<SELECT name='Sex' >
+                <OPTION " . ($inValue == 'F' ? 'SELECTED' : '') . " value='F'>Female</OPTION>
+                <OPTION " . ($inValue == 'M' ? 'SELECTED' : '') . " value='M'>Male</OPTION>
+            </SELECT>";
+}
 
 
+
+function YN(string $name, string $inValue)
+{
+    return "<SELECT name='{$name}' >
+                <OPTION " . ($inValue == '1' ? 'SELECTED' : '') . " value='1'>Yes</OPTION>
+                <OPTION " . ($inValue == '0' ? 'SELECTED' : '') . " value='0'>No</OPTION>
+            </SELECT>";
+}
 
 

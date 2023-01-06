@@ -4,6 +4,7 @@ namespace SJR\Database\Databases\myworld;
 
 
 use App\Entity\_occasions;
+use Core\Databases\sjr\_membersFields;
 use Core\Databases\sjr\_occasionsFields;
 use Core\Databases\sjr\_taglinksFields;
 
@@ -12,6 +13,7 @@ class _myworld
     private $users;
     private $sessions;
     private $occasions;
+    private $members;
     private $taglinks;
 
 
@@ -19,6 +21,7 @@ class _myworld
     private $usersFields;
     private $sessionsFields;
     private $occasionsFields;
+    private $membersFields;
     private $tagLinksFields;
 
     public function __construct(array $inArray)
@@ -80,6 +83,24 @@ class _myworld
     {
         $this->occasions = $occasions;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param mixed $members
+     */
+    public function setMembers($members): void
+    {
+        $this->members = $members;
+    }
+
+
 
     /**
      * @return mixed
@@ -147,6 +168,23 @@ class _myworld
     {
         $this->occasionsFields = $occasionsFields;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMembersFields()
+    {
+        return new _membersFields(defineMyworld::getFields('members'));
+    }
+
+    /**
+     * @param mixed $membersFields
+     */
+    public function setMembersFields($membersFields): void
+    {
+        $this->membersFields = $membersFields;
+    }
+
 
     /**
      * @return mixed

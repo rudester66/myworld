@@ -24,6 +24,7 @@
     <link rel="shortcut icon" href="/App/Images/dog.ico"/>
 
     <link rel="stylesheet" href="SJR/sjr.css">
+    <script src="Core/JS/tags.js"></script>
     <script src="SJR/sjr.js"></script>
     <?php
     //  Load all the CSS files passed

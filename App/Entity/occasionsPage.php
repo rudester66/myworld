@@ -12,6 +12,7 @@ class occasionsPage
     private $occasion;
     private $AllTags;
     private $FileTags;
+    private $memberTags;
 
     public function __construct(array $inArray)
     {
@@ -101,7 +102,7 @@ class occasionsPage
      */
     public function setAllTags(): void
     {
-        $this->AllTags = TagLink::getAllTags(0, $this->getOccasionID());
+        $this->AllTags = TagLink::getAllTags($this->getOccasionID());
 
     }
 
@@ -124,6 +125,28 @@ class occasionsPage
     {
         $this->FileTags = $FileTags;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMemberTags()
+    {
+        if(array_key_exists(2, $this->AllTags)){
+            return $this->AllTags[2];
+        } else {
+            return $this->MemberTags;
+        }
+    }
+
+    /**
+     * @param mixed $memberTags
+     */
+    public function setMemberTags($memberTags): void
+    {
+        $this->memberTags = $memberTags;
+    }
+
+
 
 
 

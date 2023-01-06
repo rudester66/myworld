@@ -34,22 +34,32 @@
     /*border-radius: 50%;*/
 }
 
-
-
 #occasionsEdit {
-    width: 20%;
+    position: absolute;
+    left: 0vh;
+    padding-top: 3vh;
+    height: 95vh;
+    width: 18%;
     border-right: 1px solid black ;
     padding-right: 1%;
+    background: mintcream;
 }
 
 #occasionsImage {
+    position: absolute;
+    left: 22%;
+    height: 95vh;
     width: 50%;
     border-right: 1px solid black ;
-
+    background: mintcream;
 }
 
 #occasionsImageEdit {
-    width: 20%;
+    position: absolute;
+    height: 95vh;
+    left: 75%;
+    width: 18%;
+    background: mintcream;
 }
 
 
